@@ -4,6 +4,7 @@
 ## Controls
 
 WASD - Movement in all directions
+
 Space/Controller A button - Jump
 
 ## Programs used
