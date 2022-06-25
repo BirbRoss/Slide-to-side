@@ -6,23 +6,22 @@ public class Moverment : MonoBehaviour
 {
     [Header("Movement")]
     public float speed = 5.0f;
-    public float jumpHeight = 2.0f;
-    public float jumpSpeed = -5.0f;
+    public float jumpHeight = -5.0f;
     Vector3 velocity;
-    CharacterController controller;
+    Rigidbody rb;
 
     [Header("Ground check")]
-    [SerializeReference] bool grounded = true;
+    [SerializeField] bool grounded = true;
     public Vector3 groundOffset = new Vector3(0, -0.5f, 0);
-    public float groundDistance = 0.4f;
+    public Vector3 groundDistance = new Vector3(0.5f, 0.1f, 0.5f);
     public LayerMask groundMask;
     public float gravity = -9.81f;
 
     // Start is called before the first frame update
     void Start()
     {
+        rb = GetComponent<Rigidbody>();
         groundCheck();
-        controller = gameObject.GetComponent<CharacterController>();
     }
 
     // Update is called once per frame
@@ -31,8 +30,8 @@ public class Moverment : MonoBehaviour
         float x = Input.GetAxis("Horizontal");
         float z = Input.GetAxis("Vertical");
 
-        Vector3 move = transform.right * x + transform.forward * z;
-        controller.Move(move * speed * Time.deltaTime);
+        transform.position += (transform.right * x + transform.forward * z) * speed;
+        
 
         if (!grounded && velocity.y < 0)
         {
@@ -40,7 +39,7 @@ public class Moverment : MonoBehaviour
         }
         else if (Input.GetButtonDown("Jump") && grounded)
         {
-            velocity.y = Mathf.Sqrt(jumpHeight * jumpSpeed * gravity);
+            rb.AddForce(Vector3.up * jumpHeight, ForceMode.Impulse);
             grounded = false;
         }
 
@@ -52,17 +51,16 @@ public class Moverment : MonoBehaviour
             velocity.y = 0;
             groundCheck();
         }
-        controller.Move(velocity * Time.deltaTime);
     }
 
     void groundCheck()
     {
-        grounded = Physics.CheckBox(transform.position + groundOffset, new Vector3(0.5f, groundDistance, 0.5f), transform.rotation, groundMask);
+        grounded = Physics.CheckBox(transform.position + groundOffset, groundDistance, transform.rotation, groundMask);
     }
 
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.green;
-        Gizmos.DrawWireCube(transform.position + groundOffset, new Vector3(0.5f*2, groundDistance*2, 0.5f*2));
+        Gizmos.DrawWireCube(transform.position + groundOffset, groundDistance*2);
     }
 }
