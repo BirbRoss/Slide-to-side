@@ -5,7 +5,7 @@ using TMPro;
 
 public class scaleInDirection : MonoBehaviour
 {
-    [Header("Expand")]
+    [Header("Start values")]
     public int startCount = 1;
     public int startMax = 1;
 
@@ -18,6 +18,7 @@ public class scaleInDirection : MonoBehaviour
     public Moverment moveScript;
     Vector3 gOffset;
     Vector3 gDist;
+    public TMP_Text obstructText;
 
     [Header("Side selection")]
     public TMP_Text sideText;
@@ -33,6 +34,7 @@ public class scaleInDirection : MonoBehaviour
         gOffset = moveScript.groundOffset;
         gDist = moveScript.groundDistance;
         warning.enabled = false;
+        obstructText.enabled = false;
     }
 
     // Update is called once per frame
@@ -41,7 +43,61 @@ public class scaleInDirection : MonoBehaviour
 
         if (Input.GetAxis("Resize") > 0 && expandCount > 0 && !inUse) //if the value is up and you can expand
         {
+            bool obstructed = false;
+            Vector3 pos = transform.position;
+            RaycastHit hit;
 
+            switch (sideSelect) //Will cast a ray from the side that has been selected to extend, if it hits something it will not extend
+            {
+                case 0: //front
+                    pos.z = transform.position.z + (Mathf.Abs(expandCount - expandMax) * 0.5f);
+                    if (Physics.Raycast(pos, transform.forward, out hit, 1.5f))
+                    {
+                        Debug.DrawLine(pos, hit.transform.position, Color.green, 3.0f);
+                        Debug.Log(hit.transform.name);
+                        obstructed = true;
+                    }
+                    break;
+                case 1: //back
+                    pos.z = transform.position.z - (Mathf.Abs(expandCount - expandMax) * 0.5f);
+                    if (Physics.Raycast(pos, -transform.forward, out hit, 1.5f))
+                    {
+                        Debug.DrawLine(pos, hit.transform.position, Color.green, 3.0f);
+                        Debug.Log(hit.transform.name);
+                        obstructed = true;
+                    }
+                    break;
+                case 2: //left
+                    pos.x = transform.position.x - (Mathf.Abs(expandCount - expandMax) * 0.5f);
+                    if (Physics.Raycast(pos, -transform.right, out hit, 1.5f))
+                    {
+                        Debug.DrawLine(pos, hit.transform.position, Color.green, 3.0f);
+                        Debug.Log(hit.transform.name);
+                        obstructed = true;
+                    }
+                    break;
+                case 3: //right
+                    pos.x = transform.position.x + (Mathf.Abs(expandCount - expandMax) * 0.5f);
+                    if (Physics.Raycast(pos, transform.right, out hit, 1.5f))
+                    {
+                        Debug.DrawLine(pos, hit.transform.position, Color.green, 3.0f);
+                        Debug.Log(hit.transform.name);
+                        obstructed = true;
+                    }
+                    break;
+                case 4: //up
+                    pos.y = transform.position.y + (Mathf.Abs(expandCount - expandMax) * 0.5f);
+                    if (Physics.Raycast(pos, transform.up, out hit, 1.5f))
+                    {
+                        Debug.DrawLine(pos, hit.transform.position, Color.green, 3.0f);
+                        Debug.Log(hit.transform.name);
+                        obstructed = true;
+                    }
+                    break;
+            }
+            
+            if (!obstructed)
+            {
                 expandCount--;
                 expandText.text = expandCount.ToString();
                 inUse = true;
@@ -49,6 +105,15 @@ public class scaleInDirection : MonoBehaviour
                 inverse = false;
                 sidePicked = true;
                 resizeSide();
+            }
+            else
+            {
+                if (!running)
+                {
+                    StartCoroutine(flashWarning(obstructText));
+                }
+            }
+
         }
         else if (Input.GetAxis("Resize") < 0 && expandCount < expandMax && !inUse) //if the value is down and not 0
         {
@@ -78,7 +143,7 @@ public class scaleInDirection : MonoBehaviour
             {
                 if (!running)
                 {
-                    StartCoroutine(flashWarning());
+                    StartCoroutine(flashWarning(warning));
                 }
             }
         }
@@ -94,7 +159,7 @@ public class scaleInDirection : MonoBehaviour
             {
                 if (!running)
                 {
-                    StartCoroutine(flashWarning());
+                    StartCoroutine(flashWarning(warning));
                 }
             }
         }
@@ -212,8 +277,6 @@ public class scaleInDirection : MonoBehaviour
         moveScript.groundDistance = gDist;
         transform.position = posShift;
         transform.localScale = resizeAmount;
-
-        
     }
 
     public void updateText()
@@ -234,23 +297,15 @@ public class scaleInDirection : MonoBehaviour
         expandCount = startCount;
     }
 
-    private IEnumerator flashWarning()
+    private IEnumerator flashWarning(TMP_Text flash)
     {
         running = true;
 
-        warning.enabled = true;
-        yield return new WaitForSeconds(0.75f);
-        warning.enabled = false;
-        yield return new WaitForSeconds(0.75f);
-        warning.enabled = true;
-        yield return new WaitForSeconds(0.75f);
-        warning.enabled = false;
-        yield return new WaitForSeconds(0.75f);
-        warning.enabled = true;
-        yield return new WaitForSeconds(0.75f);
-        warning.enabled = false;
-        yield return new WaitForSeconds(0.75f);
-
+        flash.enabled = true;
+        yield return new WaitForSeconds(2f);
+        flash.enabled = false;
         running = false;
     }
+
+
 }
