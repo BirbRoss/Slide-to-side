@@ -6,10 +6,14 @@ using TMPro;
 public class scaleInDirection : MonoBehaviour
 {
     [Header("Expand")]
+    public int startCount = 1;
+    public int startMax = 1;
+
+    [Header("Expand")]
     public int expandCount = 1;
     public int expandMax = 1; //WHEN INCREASING MAX ALSO INCREASE THE COUNT TOO
     public TMP_Text expandText;
-    [SerializeField] bool inverse;
+    public bool inverse;
     [SerializeField] bool sidePicked = false;
     public Moverment moveScript;
     Vector3 gOffset;
@@ -127,7 +131,7 @@ public class scaleInDirection : MonoBehaviour
         }
     }
 
-    void resizeSide()
+    public void resizeSide()
     {
         Vector3 posShift = transform.position;
         Vector3 resizeAmount = transform.localScale;
@@ -167,39 +171,39 @@ public class scaleInDirection : MonoBehaviour
                         break;*/
                 }
             }
-             else
+        else
+        {
+            switch (sideSelect) //Switches to the side of the value swapped to
             {
-                switch (sideSelect) //Switches to the side of the value swapped to
-                {
-                    case 0: //front
-                        posShift.z += (resizeFactor / 2);
-                        resizeAmount.z -= resizeFactor;
-                        gDist.z -= 0.5f;
+                case 0: //front
+                    posShift.z += (resizeFactor / 2);
+                    resizeAmount.z -= resizeFactor;
+                    gDist.z -= 0.5f;
                     break;
-                    case 1: //back
-                        posShift.z += -(resizeFactor / 2);
-                        resizeAmount.z -= resizeFactor;
-                        gDist.z -= 0.5f;
+                case 1: //back
+                     posShift.z += -(resizeFactor / 2);
+                     resizeAmount.z -= resizeFactor;
+                     gDist.z -= 0.5f;
                     break;
-                    case 2: //left
-                        posShift.x += -(resizeFactor / 2);
-                        resizeAmount.x -= resizeFactor;
-                        gDist.x -= 0.5f;
+                case 2: //left
+                    posShift.x += -(resizeFactor / 2);
+                    resizeAmount.x -= resizeFactor;
+                    gDist.x -= 0.5f;
                     break;
-                    case 3: //right
-                        posShift.x += (resizeFactor / 2);
-                        resizeAmount.x -= resizeFactor;
-                        gDist.x -= 0.5f;
+                case 3: //right
+                    posShift.x += (resizeFactor / 2);
+                    resizeAmount.x -= resizeFactor;
+                    gDist.x -= 0.5f;
                     break;
-                    case 4: //up
-                        posShift.y -= (resizeFactor / 2);
-                        resizeAmount.y -= resizeFactor;
-                        gOffset.y += 0.5f;
+                case 4: //up
+                    posShift.y -= (resizeFactor / 2);
+                    resizeAmount.y -= resizeFactor;
+                    gOffset.y += 0.5f;
                     break;
-                    /*case 5: //down
-                        posShift.y -= -(resizeFactor / 2);
-                        resizeAmount.y -= resizeFactor;
-                        break;*/
+                /*case 5: //down
+                    posShift.y -= -(resizeFactor / 2);
+                    resizeAmount.y -= resizeFactor;
+                    break;*/
             }
         }
 
@@ -210,6 +214,24 @@ public class scaleInDirection : MonoBehaviour
         transform.localScale = resizeAmount;
 
         
+    }
+
+    public void updateText()
+    {
+        expandText.text = expandCount.ToString();
+    }
+
+    public void resetCount()
+    {
+
+        for (int i = expandCount; i < expandMax; i++)
+        {
+            inverse = true;
+            resizeSide(); //Resize in the opposite direction to shrink back
+        }
+
+        expandMax = startMax;
+        expandCount = startCount;
     }
 
     private IEnumerator flashWarning()

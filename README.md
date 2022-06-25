@@ -21,6 +21,7 @@ Of note the arrow keys/dpad will not work if another arrow key/dpad button is al
 ## Programs used
 
 - Unity 2012.3.4f1
+- Blender
 
 ## Ideas/Concept
 
