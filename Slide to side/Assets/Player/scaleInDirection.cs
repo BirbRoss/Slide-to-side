@@ -172,22 +172,22 @@ public class scaleInDirection : MonoBehaviour
                 switch (sideSelect) //Switches to the side of the value swapped to
                 {
                     case 0: //front
-                        posShift.z -= (resizeFactor / 2);
+                        posShift.z += (resizeFactor / 2);
                         resizeAmount.z -= resizeFactor;
                         gDist.z -= 0.5f;
                     break;
                     case 1: //back
-                        posShift.z -= -(resizeFactor / 2);
+                        posShift.z += -(resizeFactor / 2);
                         resizeAmount.z -= resizeFactor;
                         gDist.z -= 0.5f;
                     break;
                     case 2: //left
-                        posShift.x -= -(resizeFactor / 2);
+                        posShift.x += -(resizeFactor / 2);
                         resizeAmount.x -= resizeFactor;
                         gDist.x -= 0.5f;
                     break;
                     case 3: //right
-                        posShift.x -= (resizeFactor / 2);
+                        posShift.x += (resizeFactor / 2);
                         resizeAmount.x -= resizeFactor;
                         gDist.x -= 0.5f;
                     break;
