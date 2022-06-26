@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
@@ -54,7 +55,7 @@ public class scaleInDirection : MonoBehaviour
                     if (Physics.Raycast(pos, transform.forward, out hit, 1.5f))
                     {
                         Debug.DrawLine(pos, hit.transform.position, Color.green, 3.0f);
-                        Debug.Log(hit.transform.name);
+                        
                         obstructed = true;
                     }
                     break;
@@ -63,7 +64,7 @@ public class scaleInDirection : MonoBehaviour
                     if (Physics.Raycast(pos, -transform.forward, out hit, 1.5f))
                     {
                         Debug.DrawLine(pos, hit.transform.position, Color.green, 3.0f);
-                        Debug.Log(hit.transform.name);
+                        
                         obstructed = true;
                     }
                     break;
@@ -72,7 +73,7 @@ public class scaleInDirection : MonoBehaviour
                     if (Physics.Raycast(pos, -transform.right, out hit, 1.5f))
                     {
                         Debug.DrawLine(pos, hit.transform.position, Color.green, 3.0f);
-                        Debug.Log(hit.transform.name);
+                        
                         obstructed = true;
                     }
                     break;
@@ -81,7 +82,7 @@ public class scaleInDirection : MonoBehaviour
                     if (Physics.Raycast(pos, transform.right, out hit, 1.5f))
                     {
                         Debug.DrawLine(pos, hit.transform.position, Color.green, 3.0f);
-                        Debug.Log(hit.transform.name);
+                        
                         obstructed = true;
                     }
                     break;
@@ -90,7 +91,7 @@ public class scaleInDirection : MonoBehaviour
                     if (Physics.Raycast(pos, transform.up, out hit, 1.5f))
                     {
                         Debug.DrawLine(pos, hit.transform.position, Color.green, 3.0f);
-                        Debug.Log(hit.transform.name);
+                        
                         obstructed = true;
                     }
                     break;

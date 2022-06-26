@@ -22,17 +22,10 @@ public class changeExpandability : MonoBehaviour
             {
                 scaleScript.expandCount += pointsToChange;
                 scaleScript.expandMax += pointsToChange;
-
-
             }
             else
             {
                 scaleScript.resetCount();
-
-                for (int i = 0; i < cubeToActivate.Length - 1; i++)
-                {
-                    cubeToActivate[i].SetActive(true);
-                }       
             }
 
             scaleScript.updateText();
@@ -46,6 +39,14 @@ public class changeExpandability : MonoBehaviour
         else
         {
             Debug.Log("Error - No scale script found");
+        }
+
+        if (cubeToActivate != null)
+        {
+            for (int i = 0; i < cubeToActivate.Length; i++)
+            {
+                cubeToActivate[i].SetActive(true);
+            }
         }
     }
 }

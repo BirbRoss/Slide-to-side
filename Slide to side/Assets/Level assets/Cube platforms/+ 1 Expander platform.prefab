@@ -128,7 +128,7 @@ GameObject:
   - component: {fileID: 319262151604544617}
   - component: {fileID: 1418540001158965626}
   m_Layer: 0
-  m_Name: Expander platform
+  m_Name: + 1 Expander platform
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

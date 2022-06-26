@@ -7,15 +7,16 @@ public class Moverment : MonoBehaviour
     [Header("Movement")]
     public float speed = 5.0f;
     public float jumpHeight = -5.0f;
-    Vector3 velocity;
     Rigidbody rb;
 
     [Header("Ground check")]
     [SerializeField] bool grounded = true;
+    [SerializeField] bool safeGround = true;
     public Vector3 groundOffset = new Vector3(0, -0.5f, 0);
     public Vector3 groundDistance = new Vector3(0.5f, 0.1f, 0.5f);
     public LayerMask groundMask;
     public float gravity = -9.81f;
+    public Vector3 lastCoords;
 
     // Start is called before the first frame update
     void Start()
@@ -33,7 +34,7 @@ public class Moverment : MonoBehaviour
         transform.position += (transform.right * x + transform.forward * z) * speed;
         
 
-        if (!grounded && velocity.y < 0)
+        if (!grounded)
         {
             groundCheck();
         }
@@ -43,24 +44,30 @@ public class Moverment : MonoBehaviour
             grounded = false;
         }
 
-        velocity.y += gravity * Time.deltaTime;
-
         //Checks if grounded and resets velocity or applies gravity
         if (grounded)
         {
-            velocity.y = 0;
             groundCheck();
+
+            if (safeGround)
+            {
+                lastCoords = transform.position;
+            }
         }
     }
 
     void groundCheck()
     {
         grounded = Physics.CheckBox(transform.position + groundOffset, groundDistance, transform.rotation, groundMask);
+        safeGround = Physics.CheckBox(transform.position + groundOffset, new Vector3(0.4f, 0.1f, 0.4f), transform.rotation, groundMask);
     }
 
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.green;
         Gizmos.DrawWireCube(transform.position + groundOffset, groundDistance*2);
+
+        Gizmos.color = Color.blue;
+        Gizmos.DrawWireCube(transform.position + groundOffset, new Vector3(0.4f, 0.1f, 0.4f) * 2);
     }
 }
