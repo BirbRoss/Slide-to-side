@@ -262,7 +262,7 @@ public class scaleInDirection : MonoBehaviour
                     gDist.x -= 0.5f;
                     break;
                 case 4: //up
-                    posShift.y -= (resizeFactor / 2);
+                    posShift.y += (resizeFactor / 2);
                     resizeAmount.y -= resizeFactor;
                     gOffset.y += 0.5f;
                     break;
