@@ -206,7 +206,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &878178788 stripped
 GameObject:
@@ -792,19 +792,13 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bebf9a852584f044f802c6adfc46b779, type: 3}
---- !u!20 &1822421421 stripped
-Camera:
-  m_CorrespondingSourceObject: {fileID: 1876604960244951722, guid: c5a30314e7e3ad2459f243c3720080d6,
-    type: 3}
-  m_PrefabInstance: {fileID: 1876604960470646627}
-  m_PrefabAsset: {fileID: 0}
 --- !u!43 &1936575067
 Mesh:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-639026
+  m_Name: pb_Mesh-7660
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -1089,7 +1083,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Camera
       value: 
-      objectReference: {fileID: 1822421421}
+      objectReference: {fileID: 0}
     - target: {fileID: 1203544812771956145, guid: e45d04a95a6ac7049b4dab1734d7001f,
         type: 3}
       propertyPath: m_Pivot.x
@@ -1392,6 +1386,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4318465616420190146, guid: c5a30314e7e3ad2459f243c3720080d6,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -3.357
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c5a30314e7e3ad2459f243c3720080d6, type: 3}

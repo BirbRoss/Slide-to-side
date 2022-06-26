@@ -5,19 +5,20 @@ using UnityEngine;
 public class turnOffWhenButton : MonoBehaviour
 {
     public buttonHandle button;
+    public bool flip = false;
 
     // Update is called once per frame
     void Update()
     {
         if (button.buttonOn)
         {
-            gameObject.GetComponent<BoxCollider>().enabled = false;
-            gameObject.GetComponent<MeshRenderer>().enabled = false;
+            gameObject.GetComponent<Collider>().enabled = flip;
+            gameObject.GetComponent<MeshRenderer>().enabled = flip;
         }
         else if (!button.buttonOn)
         {
-            gameObject.GetComponent<BoxCollider>().enabled = true;
-            gameObject.GetComponent<MeshRenderer>().enabled = true;
+            gameObject.GetComponent<Collider>().enabled = !flip;
+            gameObject.GetComponent<MeshRenderer>().enabled = !flip;
         }
     }
 }

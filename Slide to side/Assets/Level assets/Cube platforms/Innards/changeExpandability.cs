@@ -6,6 +6,8 @@ public class changeExpandability : MonoBehaviour
 {
     [Header("Point changing")]
     public int pointsToChange = 1;
+    public bool invert;
+    public int sideToShrink;
     public bool resetBarrier = false;
     [SerializeField] bool removeAfter;
 
@@ -18,10 +20,19 @@ public class changeExpandability : MonoBehaviour
 
         if (scaleScript != null)
         {
-            if (!resetBarrier)
+            if (!resetBarrier && !invert)
             {
                 scaleScript.expandCount += pointsToChange;
                 scaleScript.expandMax += pointsToChange;
+            }
+            else if (!resetBarrier && invert)
+            {
+                int curSide = scaleScript.sideSelect;
+
+                scaleScript.sideSelect = sideToShrink;
+                scaleScript.inverse = true;
+                scaleScript.resizeSide();
+                scaleScript.sideSelect = curSide;
             }
             else
             {

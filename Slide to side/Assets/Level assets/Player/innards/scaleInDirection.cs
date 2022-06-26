@@ -23,7 +23,7 @@ public class scaleInDirection : MonoBehaviour
 
     [Header("Side selection")]
     public TMP_Text sideText;
-    [SerializeField] int sideSelect = 0;
+    public int sideSelect = 0;
     [SerializeField] bool inUse = false;
     public float resizeFactor = 1.0f;
     public TMP_Text warning; 
