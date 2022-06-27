@@ -7,6 +7,19 @@ public class gameManager : MonoBehaviour
 {
     public GameObject player;
 
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            Application.Quit();
+        }
+        if (SceneManager.GetActiveScene().buildIndex == 0 && Input.GetKeyDown(KeyCode.Joystick1Button1))
+        {
+            levelEnd();
+        }
+
+    }
+
     public void levelEnd()
     {
         int sceneIndx = SceneManager.GetActiveScene().buildIndex;
