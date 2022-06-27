@@ -13,6 +13,8 @@ You're a cube that's undergone **terrible** experiments! And now you can expand 
 
 [Day 3](https://youtu.be/4p3NziajTcs)
 
+[Day 4/Final result](https://youtu.be/bocZaBeOyWE)
+
 ## Controls
 
 WASD - Movement in all directions
@@ -25,6 +27,8 @@ Up/Down arrow keys/dpad - Extends/retracts that face
 
 Q/E & Controller right stick - Moves camera from left to right
 
+Esc/Start - Exits the game
+
 
 Of note the arrow keys/dpad will not work if another arrow key/dpad button is already held down to prevent anything bad happening.
 
@@ -34,6 +38,7 @@ Of note the arrow keys/dpad will not work if another arrow key/dpad button is al
 - Blender
 - Probuilder & Progrid
 - Beepbox
+- Sony Music maker
 
 ## Special thanks
 
