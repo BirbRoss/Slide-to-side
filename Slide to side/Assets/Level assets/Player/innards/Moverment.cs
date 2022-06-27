@@ -31,7 +31,7 @@ public class Moverment : MonoBehaviour
         float x = Input.GetAxis("Horizontal");
         float z = Input.GetAxis("Vertical");
 
-        transform.position += (transform.right * x + transform.forward * z) * speed;
+        transform.position += ((transform.right * x + transform.forward * z) * speed) * Time.deltaTime;
         
 
         if (!grounded)

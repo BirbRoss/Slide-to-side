@@ -33,6 +33,7 @@ Of note the arrow keys/dpad will not work if another arrow key/dpad button is al
 - Unity 2012.3.4f1
 - Blender
 - Probuilder & Progrid
+- Beepbox
 
 ## Special thanks
 

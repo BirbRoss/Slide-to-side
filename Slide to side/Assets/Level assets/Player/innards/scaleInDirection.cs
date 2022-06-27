@@ -20,6 +20,7 @@ public class scaleInDirection : MonoBehaviour
     Vector3 gOffset;
     Vector3 gDist;
     public TMP_Text obstructText;
+    public AudioClip grow;
 
     [Header("Side selection")]
     public TMP_Text sideText;
@@ -105,6 +106,12 @@ public class scaleInDirection : MonoBehaviour
 
                 inverse = false;
                 sidePicked = true;
+
+                
+                gameObject.GetComponent<AudioSource>().PlayOneShot(grow);
+                gameObject.GetComponent<AudioSource>().pitch *= 1.5f;
+
+
                 resizeSide();
             }
             else
@@ -128,6 +135,10 @@ public class scaleInDirection : MonoBehaviour
                 {
                     sidePicked = false; //Resets side picked when the player hasn't expanded any side
                 }
+
+                gameObject.GetComponent<AudioSource>().pitch /= 1.5f;
+                gameObject.GetComponent<AudioSource>().PlayOneShot(grow);
+                
 
                 resizeSide();
         }
@@ -297,6 +308,8 @@ public class scaleInDirection : MonoBehaviour
         sidePicked = false;
         expandMax = startMax;
         expandCount = startCount;
+
+        gameObject.GetComponent<AudioSource>().pitch = 1;
     }
 
     private IEnumerator flashWarning(TMP_Text flash)
