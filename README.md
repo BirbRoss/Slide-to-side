@@ -1,11 +1,17 @@
 # Slide to side
  Geo Jam 2022 submission game
 
+## Story
+
+You're a cube that's undergone **terrible** experiments! And now you can expand on your different sides ~~except down because that breaks everything~~. Though at least you have science bro to guide you through the tests.
+
 ## Progress
 
 [Day 1](https://youtu.be/brQPDQOjsV4)
 
 [Day 2](https://youtu.be/loI34UKAZ5Y)
+
+[Day 3](https://youtu.be/4p3NziajTcs)
 
 ## Controls
 
@@ -28,19 +34,6 @@ Of note the arrow keys/dpad will not work if another arrow key/dpad button is al
 - Blender
 - Probuilder & Progrid
 
-## Ideas/Concept
+## Special thanks
 
-Cross a level as a cube, you can pick a side to expand using left/right arrow keys to change sides, up and down to expand and retract
-
-You collect floating cubes to expand your expand ability cap
-
-You cannot expand a side different from the one you picked, hense pick a side
-
-Player - Square
-Scientist - Spherical
-Spikes - Triangles
-
-Spikes are alive, but they're just doing their job
-Maybe some dialogue between levels between the scientist and the player's cube
-
-Forcefields can block player until they press a button
+Brackeys because honestly none of this could have been done without him and I don't think I'd have even learned to code if not for him.

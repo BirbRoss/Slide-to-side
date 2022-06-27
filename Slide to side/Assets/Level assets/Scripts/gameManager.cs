@@ -9,7 +9,16 @@ public class gameManager : MonoBehaviour
 
     public void levelEnd()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        int sceneIndx = SceneManager.GetActiveScene().buildIndex;
+
+        if (sceneIndx != 5)
+        {
+            SceneManager.LoadScene(sceneIndx + 1);
+        }
+        else
+        {
+            SceneManager.LoadScene(0);
+        }
     }
 
     public void killPlayer()

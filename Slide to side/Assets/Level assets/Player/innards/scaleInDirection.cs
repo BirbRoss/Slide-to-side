@@ -294,6 +294,7 @@ public class scaleInDirection : MonoBehaviour
             resizeSide(); //Resize in the opposite direction to shrink back
         }
 
+        sidePicked = false;
         expandMax = startMax;
         expandCount = startCount;
     }
